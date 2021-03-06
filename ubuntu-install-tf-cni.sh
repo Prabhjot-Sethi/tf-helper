@@ -2,8 +2,8 @@
 
 set -ex
 
-TF_REPO={TF_REPO:-tungstenfabric}
-TF_REPO_TAG={TF_REPO_TAG:-R2011-latest}
+TF_REPO=${TF_REPO:-tungstenfabric}
+TF_REPO_TAG=${TF_REPO_TAG:-R2011-latest}
 MASTER_IP=$(ip route get 8.8.8.8 | grep -oP 'src \K\S+')
 
 cat > /tmp/tf-manifest.yaml << EOF

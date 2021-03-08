@@ -1631,7 +1631,7 @@ type: kubernetes.io/service-account-token
 EOF
 
 # since we takeover the physical interface, set global DNS to point to relevant DNS configuration, allowing DNS to resolve via vhost0 interface
-sudo sed -i -e "s/#DNS=/DNS=$(ip route get 8.8.8.8 | grep -oP 'via \K\S+')/g" /etc/systemd/resolved.conf
+sudo sed -i -e "s/#DNS=/DNS=$(grep -m1 -oP 'nameserver \K\S+' /run/systemd/resolve/resolv.conf)/g" /etc/systemd/resolved.conf
 sudo service systemd-resolved restart
 systemd-resolve --status
 

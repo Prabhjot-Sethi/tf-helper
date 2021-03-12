@@ -1633,7 +1633,7 @@ EOF
 # since we takeover the physical interface, set global DNS to point to relevant DNS configuration, allowing DNS to resolve via vhost0 interface
 sudo sed -i -e "s/#DNS=/DNS=$(grep -m1 -oP 'nameserver \K\S+' /run/systemd/resolve/resolv.conf)/g" /etc/systemd/resolved.conf
 sudo service systemd-resolved restart
-systemd-resolve --status
+systemd-resolve --status --no-pager
 
 kubectl apply -f /tmp/tf-manifest.yaml
 
